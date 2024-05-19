@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 
 
-interface IProps{
+ export interface IProductProps{
     "id": number,
     "title": string,
     "description": string,
@@ -14,11 +14,25 @@ interface IProps{
     "thumbnail": string,
     "images": string[]
 }
-type ITypeProps=IProps & {children?:React.ReactNode};
-const Product:FC<ITypeProps> = () => {
+ export  type IProductTypeProps=IProductProps & {children?:React.ReactNode};
+const Product: FC<IProductTypeProps> = ({
+                                     id,
+                                     title,
+                                     description,
+                                     price,
+                                     discountPercentage,
+                                     rating,
+                                     stock,
+                                     brand,
+                                     category,
+                                     thumbnail,
+                                     images
+                                 }) => {
     return (
         <div>
-
+            <h2>{id}.{title}.{brand}.{category}.{thumbnail}</h2>
+            {images.map((images, index) => <li key={index}>{<img src={images} alt={title}/>}</li>)}
+            <p>{description}.{price}.{discountPercentage}.{rating}.{stock}</p>
         </div>
     );
 };
